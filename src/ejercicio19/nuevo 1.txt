@@ -1,0 +1,30 @@
+InputStreamReader leer = new InputStreamReader(System.in);
+		BufferedReader buff = new BufferedReader(leer);
+		 
+		int departamentoAModificar = 99999;
+		int datoAModificar = 99999;
+		 
+		while(departamentoAModificar!=0){
+		 System.out.print("Escriba el numero del departamento a MODIFICAR en el caso de no querer modificar introduzca el numero cero: ");
+		 departamentoAModificar = Integer.parseInt(buff.readLine());
+		 
+		 if(departamentoAModificar!=0){
+		  System.out.println("Si desea modificar el nombre del departamento   introduzca 1, si desea modificar la localidad 2");
+		  datoAModificar = Integer.parseInt(buff.readLine());
+		  Departamento dep = leidos.get(departamentoAModificar);
+
+
+		  if(datoAModificar==1){
+		   System.out.println("Introduce el nuevo nombre del departamento");
+		   dep.setNombreDeDepartamento(buff.readLine());
+		  }
+
+
+		  if(datoAModificar==2){
+		   System.out.println("Introduce el nuevo lugar del departamento");
+		   dep.setLugarDeDepartamento(buff.readLine());
+		  }
+		 
+		 }
+		}
+		

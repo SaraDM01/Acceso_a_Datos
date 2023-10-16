@@ -1,4 +1,4 @@
-package ejercicio18;
+package ejercicio19;
 
 public class Departamento {
 

@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 public class Ejercicio18 {
 
-	private int tamagnoRegistro = 154; // 4 int + (25 char)*2 + (50 char)*2 = 4 + 50 +100 = 154 
+	private static int tamagnoRegistro = 154; // 4 int + (25 char)*2 + (50 char)*2 = 4 + 50 +100 = 154 
+	private static int tamagnoNombre = 50;
+	private static int tamagnoLocalidad = 50; 
 	public static void main(String[] args) {
 		ArrayList<Departamento> listaDepartamentos = new ArrayList<>();
 		Departamento d1 = new Departamento(101, "Matematicas" , "Zaragoza");
@@ -39,32 +41,45 @@ public class Ejercicio18 {
 		for (Departamento d :listaDepartamentos){
 		
 			try {
-		
+				
+				fichero.seek(funcion(d.getNumero()));
+			//System.out.println(funcion(d.getNumero()));
 			//escribo el numero del departamento
 				fichero.writeInt(funcion(d.getNumero()));
 			//escribo el nombre del departamento
-				fichero.writeChars(d.getNombre());
+				fichero.writeChars(formatearCadena(d.getNombre(), tamagnoNombre));
 			//escribo la localidad
-				fichero.writeChars(d.getLocalidad());
+				fichero.writeChars(formatearCadena(d.getLocalidad(), tamagnoLocalidad));
 		
-			}catch(IOException e) {
+				}catch(IOException e) {
 			
-				e.printStackTrace();
-		}
+					e.printStackTrace();
+			}
 		
 		}
 		
 		try {
 			fichero.close();
-		}catch (IOException e) {
+			}catch (IOException e) {
 			
 			e.printStackTrace();
-	}
-		private static int funcion(int numero) {
-			int pos = 0;
-			pos = tamagnoRegirstro * (numero - 1) + 1;
-			return pos;
 		}
+		
+		
+	}
+	private static int funcion(int numero) {
+		int pos = 0 ;
+			
+		pos = tamagnoRegistro * (numero - 1) + 1;
+		return pos;
 	
+		
+	}
+	private static String formatearCadena(String cadena, int tamagno) {
+		StringBuffer tmp = new StringBuffer();
+		tmp.append(cadena);
+		tmp.setLength(tamagno);
+		return new String (tmp);
 	}	
 }
+
